@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MauiGrouping</name>
+    </assembly>
+    <members>
+        <member name="P:MauiGrouping.ViewModels.AnimalsViewModel.AllAnimals">
+            <inheritdoc cref="F:MauiGrouping.ViewModels.AnimalsViewModel.allAnimals"/>
+        </member>
+    </members>
+</doc>

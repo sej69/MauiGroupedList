@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGrouping.Pages.AnimalsPage"
+             xmlns:viewmodel="clr-namespace:MauiGrouping.ViewModels"
+             xmlns:dm="clr-namespace:MauiGrouping.Models"
+             Title="Animals">
+
+    <ScrollView VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand">
+        <VerticalStackLayout >
+            <StackLayout BindableLayout.ItemsSource="{Binding AllAnimals}" Orientation="Vertical">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="dm:AnimalList">
+                        <!-- Header (group info) here -->
+                        <StackLayout>
+                            <Frame BackgroundColor="BlueViolet" MaximumWidthRequest="200" HorizontalOptions="Start">
+                                <HorizontalStackLayout>
+                                    <!-- the following will arrow down/right if the grouping is expanded or not -->
+                                    <ImageButton Source="down_arrow.png" HeightRequest="25" WidthRequest="25" 
+                                         Command="{Binding Source={RelativeSource
+                                         AncestorType={x:Type viewmodel:AnimalsViewModel}},
+                                         Path=ExpandCommand}" CommandParameter="{Binding .}" IsVisible="{Binding IsExpanded}"/>
+                                    <ImageButton Source="right_arrow.png" HeightRequest="15" WidthRequest="25" 
+                                         Command="{Binding Source={RelativeSource
+                                         AncestorType={x:Type viewmodel:AnimalsViewModel}},
+                                         Path=ExpandCommand}" CommandParameter="{Binding .}" IsVisible="{Binding NotExpanded}"/>
+
+                                    <Label Text= "{Binding species}" Padding="5,0,20,0"/>
+
+                                </HorizontalStackLayout>
+                            </Frame>
+
+                            <!-- list data here -->
+                            <StackLayout BindableLayout.ItemsSource="{Binding .}" IsVisible="{Binding IsExpanded}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate x:DataType="dm:Animal">
+                                        <Frame BackgroundColor="DarkGreen" Margin="20,0,15,0">
+                                            <VerticalStackLayout>
+                                            <HorizontalStackLayout>
+                                                <Label Text="{Binding name}" Padding="0,0,30,0" />
+                                                <Label Text="{Binding location}" Padding="0,0,5,0"/>
+                                                </HorizontalStackLayout>
+                                                <Label Text="{Binding details}" Padding="0,0,10,0" />
+                                            </VerticalStackLayout>
+                                        </Frame>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,1 @@
+D:\Dev\MauiGrouping\MauiGrouping.csproj;x64
